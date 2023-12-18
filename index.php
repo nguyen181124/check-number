@@ -60,6 +60,7 @@ if (isset($_POST['Check'])) {
 
         $m .= "<br>";
     }
+    
 
 }
 ?>
@@ -99,7 +100,7 @@ if (isset($_POST['Check'])) {
             } ?><br><br>
             <pre><?php echo $m ?></pre>
 
-            <table width="270px" cellspacing="0px" cellpadding="0px" border="1px">
+            <table width="270px">
                 <?php
                 for ($row = 1; $row <= $number; $row++) {
                     echo "<tr>";
