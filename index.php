@@ -60,7 +60,7 @@ if (isset($_POST['Check'])) {
 
         $m .= "<br>";
     }
-    
+
 
 }
 ?>
@@ -68,54 +68,56 @@ if (isset($_POST['Check'])) {
 <html>
 
 <head>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
-    <form action="" method="post">
-        Nhập 1 số từ 0 đến 9 <input type="text" name="number" value='<?php echo $number; ?>' />
-        <input type="submit" name="Check" value="Check" /><br>
-        <span class="error">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <p class="text-center fs-1">Kiểm tra số</>
+    <form class="text-center" action="" method="post">
+        <div class="input_number">
+            Nhập 1 số từ 0 đến 9 <input type="text" name="number" value='<?php echo $number; ?>' />
+            <input type="submit" name="Check" value="Check" />
+        </div>
+        <br>
+        <span class="error text-danger">
             <?php echo $enumber; ?>
-            <?php echo $parity; ?><br><br>
-            <?php if ($sol != "") {
-                echo "Các số lẻ nhỏ hơn $number là: " . $sol;
-            } ?><br><br>
-            <?php if ($soc != "") {
-                echo "Các số chẵn nhỏ hơn $number là: " . $soc;
-            } ?><br><br>
+        </span>
+        <?php echo $parity; ?><br><br>
+        <?php if ($sol != "") {
+            echo "Các số lẻ nhỏ hơn $number là: " . $sol;
+        } ?><br><br>
+        <?php if ($soc != "") {
+            echo "Các số chẵn nhỏ hơn $number là: " . $soc;
+        } ?><br><br>
+        <div class="more_inf d-lg-flex justify-content-center gap-5">
             <?php if ($table != "") {
                 echo "Bảng nhân $number" . "<br>";
                 echo $table;
             } ?><br><br>
-            <pre><?php echo $m ?></pre>
+            <pre style="font-family: auto"><?php echo $m ?></pre>
 
-            <table width="270px">
+            <table style="width: 336px" class="d-md-flex">
                 <?php
                 for ($row = 1; $row <= $number; $row++) {
                     echo "<tr>";
                     for ($col = 1; $col <= $number; $col++) {
                         $total = $row + $col;
                         if ($total % 2 == 0) {
-                            echo "<td height=30px width=30px bgcolor=#FFFFFF></td>";
+                            echo "<td width: 30px height=30px bgcolor=#FFFFFF></td>";
                         } else {
-                            echo "<td height=30px width=30px bgcolor=#000000></td>";
+                            echo "<td width=30px height=30px bgcolor=#000000></td>";
                         }
                     }
                     echo "</tr>";
                 }
                 ?>
             </table>
+        </div>
     </form>
 
 </body>
