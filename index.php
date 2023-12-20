@@ -48,11 +48,21 @@ if (isset($_POST['Check'])) {
     }
 
     $m = "";
-    for ($i = $number; $i >= 1; $i--) {
-        for ($j = 1; $j <= $i; $j++) {
-            $m .= $j . " ";
+    for ($i = 1; $i <= $number; $i++) {
+        $m .= "<div class='h-7'>";
+        for ($j = 0; $j <= $number - $i; $j++) {
+            $m .= "<span class='inline-block w-7 h-7'> </span>";
         }
-        $m .= "<br>";
+
+        for ($j = 1; $j <= $i; $j++) {
+            $m .= "<span class='inline-block w-7 h-7'>$j</span>";
+        }
+
+        for ($j = $i - 1; $j >= 1; $j--) {
+            $m .= "<span class='inline-block w-7 h-7'>$j</span>";
+        }
+
+        $m .= "</div>";
     }
 
     $chess = "";
@@ -97,15 +107,15 @@ if (isset($_POST['Check'])) {
                 echo "Các số chẵn nhỏ hơn $number là: " . $soc;
             } ?><br><br>
         </div>
-        <div class="more_inf lg:flex gap-5 justify-center ">
+        <div class="lg:flex gap-5 justify-center">
             <div class="flex justify-center mt-3">
             <pre><?php if ($table != "") {
                     echo "Bảng nhân $number" . "<br>";
                     echo $table;
                 } ?><pre>
             </div>
-            <div class="flex justify-center mt-3">
-                <pre><?php echo $m ?></pre>
+            <div>
+                <?php echo $m ?>
             </div>
             <div class="">
                 <table class="mx-auto mt-3 border-2 border-black">
