@@ -39,79 +39,81 @@ if (isset($_POST['Check'])) {
 
     if ($enumber == "") {
         for ($q = 0; $q <= 10; $q++) {
-            $multiply = $number * $q;
-            $table .= $number . " x " . $q . " = " . $multiply . "<br>";
+            if ($q < 10 ) {
+                $q .= " ";
+            }
+                $multiply = $number * $q;
+                $table .= $number . " x " . $q . " = " . $multiply . "<br>";
         }
     }
 
     $m = "";
-    for ($i = 1; $i <= $number; $i++) {
-        for ($j = 1; $j <= $number - $i; $j++) {
-            $m .= " ";
-        }
-
+    for ($i = $number; $i >= 1; $i--) {
         for ($j = 1; $j <= $i; $j++) {
-            $m .= $j;
+            $m .= $j . " ";
         }
-
-        for ($j = $i - 1; $j >= 1; $j--) {
-            $m .= $j;
-        }
-
         $m .= "<br>";
     }
 
-
+    $chess = "";
+    for ($row = 1; $row <= $number; $row++) {
+        $chess .= "<tr>";
+        for ($col = 1; $col <= $number; $col++) {
+            $total = $row + $col;
+            if ($total % 2 == 0) {
+                $chess .= "<td width: 30px height=30px bgcolor=#FFFFFF ></td>";
+            } else {
+                $chess .= "<td width=30px height=30px bgcolor=#000000></td>";
+            }
+        }
+    }
 }
 ?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <p class="text-center text-5xl text-cyan-700 mt-20">Kiểm tra số</>
-    <form class="text-center" action="" method="post">
+    <form class="" action="" method="post">
         <div class="input_number flex gap-4 justify-center mt-12">
-            Nhập 1 số từ 0 đến 9 <input class="border-2 border-cyan-500" type="text" name="number" value='<?php echo $number; ?>' />
+            Nhập 1 số từ 0 đến 9 <input class="border-2 border-cyan-500" type="text" name="number"
+                value='<?php echo $number; ?>' />
             <input class="border-2 border-cyan-500 bg-cyan-400" type="submit" name="Check" value="Check" />
         </div>
         <br>
-        <span class="error text-red-600">
+        <span class="error text-red-600 block text-center">
             <?php echo $enumber; ?>
         </span>
-        <?php echo $parity; ?><br><br>
-        <?php if ($sol != "") {
-            echo "Các số lẻ nhỏ hơn $number là: " . $sol;
-        } ?><br><br>
-        <?php if ($soc != "") {
-            echo "Các số chẵn nhỏ hơn $number là: " . $soc;
-        } ?><br><br>
-        <div class="more_inf lg:flex gap-5 justify-center">
-            <?php if ($table != "") {
-                echo "Bảng nhân $number" . "<br>";
-                echo $table;
-            } ?>
-            <pre style="font-family: auto"><?php echo $m ?></pre>
-
-            <table class="flex justify-center mt-3">
-                <?php
-                for ($row = 1; $row <= $number; $row++) {
-                    echo "<tr>";
-                    for ($col = 1; $col <= $number; $col++) {
-                        $total = $row + $col;
-                        if ($total % 2 == 0) {
-                            echo "<td width: 30px height=30px bgcolor=#FFFFFF></td>";
-                        } else {
-                            echo "<td width=30px height=30px bgcolor=#000000></td>";
-                        }
-                    }
-                    echo "</tr>";
-                }
-                ?>
-            </table>
+        <div class="text-center">
+            <?php echo $parity; ?><br><br>
+            <?php if ($sol != "") {
+                echo "Các số lẻ nhỏ hơn $number là: " . $sol;
+            } ?><br><br>
+            <?php if ($soc != "") {
+                echo "Các số chẵn nhỏ hơn $number là: " . $soc;
+            } ?><br><br>
+        </div>
+        <div class="more_inf lg:flex gap-5 justify-center ">
+            <div class="flex justify-center mt-3">
+            <pre><?php if ($table != "") {
+                    echo "Bảng nhân $number" . "<br>";
+                    echo $table;
+                } ?><pre>
+            </div>
+            <div class="flex justify-center mt-3">
+                <pre><?php echo $m ?></pre>
+            </div>
+            <div class="">
+                <table class="mx-auto mt-3 border-2 border-black">
+                    <?php
+                    echo $chess;
+                    ?>
+                </table>
+            </div>
         </div>
     </form>
 
