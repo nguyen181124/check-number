@@ -1,6 +1,0 @@
-@media(max-width: 980px) {
-    .more_inf {
-        display: flex;
-        flex-direction: column;
-    }
-}

@@ -68,23 +68,18 @@ if (isset($_POST['Check'])) {
 <html>
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="responsive.css">
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <p class="text-center fs-1">Kiểm tra số</>
+    <p class="text-center text-5xl text-cyan-700 mt-20">Kiểm tra số</>
     <form class="text-center" action="" method="post">
-        <div class="input_number">
-            Nhập 1 số từ 0 đến 9 <input type="text" name="number" value='<?php echo $number; ?>' />
-            <input type="submit" name="Check" value="Check" />
+        <div class="input_number flex gap-4 justify-center mt-12">
+            Nhập 1 số từ 0 đến 9 <input class="border-2 border-cyan-500" type="text" name="number" value='<?php echo $number; ?>' />
+            <input class="border-2 border-cyan-500 bg-cyan-400" type="submit" name="Check" value="Check" />
         </div>
         <br>
-        <span class="error text-danger">
+        <span class="error text-red-600">
             <?php echo $enumber; ?>
         </span>
         <?php echo $parity; ?><br><br>
@@ -94,14 +89,14 @@ if (isset($_POST['Check'])) {
         <?php if ($soc != "") {
             echo "Các số chẵn nhỏ hơn $number là: " . $soc;
         } ?><br><br>
-        <div class="more_inf d-lg-flex justify-content-center gap-5">
+        <div class="more_inf lg:flex gap-5 justify-center">
             <?php if ($table != "") {
                 echo "Bảng nhân $number" . "<br>";
                 echo $table;
-            } ?><br><br>
+            } ?>
             <pre style="font-family: auto"><?php echo $m ?></pre>
 
-            <table style="width: 336px" class="d-md-flex">
+            <table class="flex justify-center mt-3">
                 <?php
                 for ($row = 1; $row <= $number; $row++) {
                     echo "<tr>";
